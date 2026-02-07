@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbbuna4ye86q4"]
+
+[ext_resource type="Texture2D" uid="uid://duvbdmqkitnu2" path="res://assets/circle.svg" id="1_djgyf"]
+[ext_resource type="Script" uid="uid://baoa1455pyqh7" path="res://scripts/slot.gd" id="2_mlwvr"]
+
+[node name="Slot" type="TextureRect"]
+custom_minimum_size = Vector2(96, 96)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 48.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_djgyf")
+expand_mode = 1
+script = ExtResource("2_mlwvr")
+empty_texture = ExtResource("1_djgyf")
