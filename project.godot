@@ -32,9 +32,9 @@ project/editorState=[{
 "path": "res://scripts/slot.gd",
 "type": "file"
 }, {
-"column": 6,
+"column": 25,
 "current": true,
-"line": 66,
+"line": 50,
 "path": "res://scripts/board.gd",
 "type": "file"
 }, {

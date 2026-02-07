@@ -20,7 +20,7 @@ func generate_code():
 	for i in range(code_length):
 		secret_code.append(randi() % color_count)
 		
-	print("Secret: ", secret_code)
+#	print("Secret: ", secret_code)
 
 func build_board():
 	columns = v_columns
@@ -48,8 +48,12 @@ func submit_guess():
 			guess.append(slot.color_id)
 	
 	print("Guess:", guess)
+	if evaluate_guess(guess):
+		print(secret_code)
 	
 	active_row += 1
+	if active_row >= rows:
+		print(secret_code)
 
 func evaluate_guess(guess):
 	var black := 0
@@ -62,6 +66,16 @@ func evaluate_guess(guess):
 		if guess_copy[i] == secret_copy[i]:
 			black += 1
 			guess_copy[i] = -1
+			secret_copy[i] = -1
 	
-	for i in range(code_length):
-		pass
+	for g in guess_copy:
+		for s in secret_copy:
+			if g != -1 and g == s:
+				white += 1
+				var secret_index = secret_copy.find(g)
+				secret_copy[secret_index] = -1
+	
+	if black == code_length:
+		return true
+	
+	print("Black: {} White: {}".format([black,white], "{}"))
