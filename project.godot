@@ -28,13 +28,13 @@ project/editorState=[{
 "type": "file"
 }, {
 "column": 0,
-"line": 23,
+"line": 0,
 "path": "res://scripts/slot.gd",
 "type": "file"
 }, {
-"column": 25,
+"column": 1,
 "current": true,
-"line": 50,
+"line": 64,
 "path": "res://scripts/board.gd",
 "type": "file"
 }, {
@@ -44,8 +44,18 @@ project/editorState=[{
 "type": "file"
 }, {
 "column": 0,
-"line": 10,
+"line": 0,
 "path": "res://scripts/palette.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 0,
+"path": "res://scripts/feedback_grid.gd",
+"type": "file"
+}, {
+"column": 1,
+"line": 8,
+"path": "res://scripts/feedback_peg.gd",
 "type": "file"
 }]
 project/breakpoints={

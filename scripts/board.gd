@@ -1,8 +1,10 @@
 extends GridContainer
 
+
 @export var rows := 9
 @export var v_columns := 4
 @export var slot_scene: PackedScene
+@export var feedback_scene: PackedScene
 
 var active_row := 0
 var secret_code = []
@@ -23,33 +25,45 @@ func generate_code():
 #	print("Secret: ", secret_code)
 
 func build_board():
-	columns = v_columns
+	columns = v_columns + 1
 
 	for r in rows:
-		for c in columns:
+		for c in v_columns:
 			var slot = slot_scene.instantiate()
 			slot.row = rows - 1 - r
-			slot.column = columns - 1 - c
+			slot.column = c
 			add_child(slot)
+		var grid = feedback_scene.instantiate()
+		grid.row = rows - 1 - r
+		add_child(grid)
 
 
 func _on_pressed() -> void:
 	submit_guess()
 	
+
 func submit_guess():
 	var guess = []
 	
-	for slot in self.get_children():
-		if slot.row == active_row:
-			if slot.color_id == -1:
-				print("Invalid Guess")
-				return
-
-			guess.append(slot.color_id)
+	for child in get_children():
+		if child is Slot:
+			if child.row == active_row:
+				if child.color_id == -1:
+					print("Invalid Guess")
+					return
+		
+				guess.append(child.color_id)
 	
 	print("Guess:", guess)
-	if evaluate_guess(guess):
-		print(secret_code)
+	var result = evaluate_guess(guess)
+	
+	for child in get_children():
+		if child is Feedback_Grid:
+			if child.row == active_row:
+				print("Showing results for row", active_row)
+				child.show_results(result[0], result[1])
+	
+	print("Black: ", result[0], "White: ", result[1])
 	
 	active_row += 1
 	if active_row >= rows:
@@ -69,13 +83,7 @@ func evaluate_guess(guess):
 			secret_copy[i] = -1
 	
 	for g in guess_copy:
-		for s in secret_copy:
-			if g != -1 and g == s:
+		if g in secret_copy and g != -1:
 				white += 1
-				var secret_index = secret_copy.find(g)
-				secret_copy[secret_index] = -1
-	
-	if black == code_length:
-		return true
-	
-	print("Black: {} White: {}".format([black,white], "{}"))
+				secret_copy[secret_copy.find(g)] = -1
+	return [black, white]

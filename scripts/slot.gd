@@ -1,3 +1,4 @@
+class_name Slot
 extends TextureRect
 
 @export var empty_texture = Texture
