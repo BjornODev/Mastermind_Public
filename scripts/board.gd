@@ -36,7 +36,7 @@ func build_board():
 		var grid = feedback_scene.instantiate()
 		grid.row = rows - 1 - r
 		add_child(grid)
-
+		grid.background_resize(v_columns)
 
 func _on_pressed() -> void:
 	submit_guess()

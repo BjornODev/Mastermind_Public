@@ -7,7 +7,9 @@ extends Control
 @onready var grid = $GridContainer
 var row := 0
 
-func _ready():
+func background_resize(slot_columns):
+	var cols = int(ceil(slot_columns / 2.0))
+	grid.columns = max(cols, 1)
 	background.size.x = grid.columns * 48
 
 func show_results(black, white):

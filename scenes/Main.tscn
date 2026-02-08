@@ -28,6 +28,8 @@ size_flags_vertical = 6
 
 [node name="Board" parent="VBoxContainer/CenterContainer" instance=ExtResource("2_0bbpv")]
 layout_mode = 2
+rows = 10
+v_columns = 6
 
 [node name="Palette" parent="VBoxContainer" instance=ExtResource("3_0bbpv")]
 layout_mode = 2
